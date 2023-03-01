@@ -1,0 +1,21 @@
+<% if @users.exists? %>
+  <% @users.each do |user| %>
+    <table>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= user.name %></td>
+
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
