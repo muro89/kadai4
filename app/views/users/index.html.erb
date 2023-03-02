@@ -8,6 +8,9 @@
 <%= render 'books/form', book: @book %>
 </div>
 <div class='col-md-8 offset-md-1'>
+  
+  <%= render 'searches/search', user: current_user %>
+  
 <h2>Users</h2>
 <%= render 'index',users: @users %>
   </div>
