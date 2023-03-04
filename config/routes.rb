@@ -17,9 +17,11 @@ devise_for :users
   resources :book_comments, only: [:create,:destroy]
   resource :favorites, only: [:create, :destroy]
   end
-  
+
   get "search" => "searches#search" , as:'search'
   get "searches/index"=> "searches#index"
+
+  resources :chats, only: [:show, :create]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

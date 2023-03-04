@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :book_comments, dependent: :destroy
 
+  has_many :user_rooms
+  has_many :chats
+  has_many :rooms, through: :user_rooms
+
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
@@ -30,8 +34,8 @@ class User < ApplicationRecord
   def following?(user)
   followings.include?(user)
   end
-  
-  
+
+
   # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
