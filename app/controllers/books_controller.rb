@@ -8,7 +8,17 @@ before_action :is_matching_login_user, only: [:edit, :update]
   end
 
   def index
-    @books = Book.all
+    #Time.current はconfig/application.rbに設定してあるタイムゾーンを元に現在日時を取得しています。
+     #at_end_of_day は1日の終わりを23:59に設定しています。
+    to = Time.current.at_end_of_day
+    from = (to - 6.day).at_beginning_of_day
+    #at_beginning_of_day　は1日の始まりの時刻を0:00に設定しています。
+    @books = Book.includes(:favorited_users).
+    #sort_byメソッドを使っていいね数を少ない順に取り出しています。
+    #ブロック変数 |x| を定義してあげないと、2よりも10,11の方が小さいと判定されてしまうのでこのように対処するそうです。
+    #ただ、このままだと少ない順に表示されてしまうので最後にreverseをつけてあげましょう。
+    #これで昇順、降順を入れ替えることができます。
+    sort_by {|x| x.favorited_users.includes(:favorites).where(created_at:from...to).size}.reverse
     @book = Book.new
   end
 
