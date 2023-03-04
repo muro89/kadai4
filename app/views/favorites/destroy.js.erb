@@ -1,1 +1,1 @@
-document.getElementById('book_<%= @book.id %>').innerHTML = '<%= j(render @book) %>
+$('#favorite_buttons_<%= @book.id %>').html("<%= j(render "favorites/favorite", book: @book) %>");
