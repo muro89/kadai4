@@ -5,6 +5,10 @@ before_action :is_matching_login_user, only: [:edit, :update]
     @books = Book.new
     @book_comment = BookComment.new
 
+    @book_detail = Book.find(params[:id])
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book_detail.id)
+      current_user.view_count.create(book_id: @book_detail.id)
+    end
   end
 
   def index
@@ -20,6 +24,9 @@ before_action :is_matching_login_user, only: [:edit, :update]
     #これで昇順、降順を入れ替えることができます。
     sort_by {|x| x.favorited_users.includes(:favorites).where(created_at:from...to).size}.reverse
     @book = Book.new
+
+   
+
   end
 
   def create
