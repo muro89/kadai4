@@ -24,8 +24,9 @@ before_action :is_matching_login_user, only: [:edit, :update]
     #これで昇順、降順を入れ替えることができます。
     sort_by {|x| x.favorited_users.includes(:favorites).where(created_at:from...to).size}.reverse
     @book = Book.new
+    
 
-   
+   @booker = Book.all
 
   end
 

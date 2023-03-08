@@ -11,6 +11,7 @@ devise_for :users
 
     end
     resource :relationships, only: [:create,:destroy]
+    get "search" => "users#search"
   end
 
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do

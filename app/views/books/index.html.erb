@@ -10,6 +10,34 @@
 
       <h2>Books</h2>
       <%= render 'index', books: @books ,book_detail: @book_detail %>
-    </div>
+    
+
+     <h2>7日間分の投稿数</h2>
+   <table class="table">
+   <thead>
+    <tr>
+     <th>６日前</th>
+     <th>5日前</th>
+     <th>4日前</th>
+     <th>3日前</th>
+     <th>２日前</th>
+     <th>昨日</th>
+     <th>今日</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <th><%= @booker.created_6days_ago.count %></th>
+     <th><%= @booker.created_5days_ago.count %></th>
+     <th><%= @booker.created_4days_ago.count %></th>
+     <th><%= @booker.created_3days_ago.count %></th>
+     <th><%= @booker.created_2days_ago.count %></th>
+     <th><%= @booker.created_yesterday.count %></th>
+     <th><%= @booker.created_today.count %></th>
+    </tr>
+   </tbody>
+  </table>
+  
+  </div>
   </div>
 </div>
