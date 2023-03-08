@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_many :rooms, through: :user_rooms
   
   has_many :view_count
+  
+  has_many :group_users
+  has_many :groups, through: :group_users
 
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy

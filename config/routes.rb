@@ -21,6 +21,7 @@ devise_for :users
 
   get "search" => "searches#search" , as:'search'
   get "searches/index"=> "searches#index"
+  resources :groups, except: [:destroy]
 
   resources :chats, only: [:show, :create]
 
