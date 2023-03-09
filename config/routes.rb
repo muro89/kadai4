@@ -10,6 +10,7 @@ devise_for :users
     get 'followers' => 'relationships#followers' , as:'followers'
 
     end
+
     resource :relationships, only: [:create,:destroy]
     get "search" => "users#search"
   end
@@ -21,7 +22,10 @@ devise_for :users
 
   get "search" => "searches#search" , as:'search'
   get "searches/index"=> "searches#index"
-  resources :groups, except: [:destroy]
+
+  resources :groups do
+    get "join" => "groups#join"
+    end
 
   resources :chats, only: [:show, :create]
 
