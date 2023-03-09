@@ -26,7 +26,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
-    @group.users << current_user.id
+
     if @group.save
       redirect_to groups_path
     else
@@ -50,7 +50,7 @@ class GroupsController < ApplicationController
     @group.users.delete(current_user) #cuurent_userをgroup.usersから削除
     redirect_to groups_path
   end
-  
+
   def new_mail
     @group = Group.find(params[:group_id])
   end
@@ -62,7 +62,7 @@ class GroupsController < ApplicationController
     @mail_content = params[:mail_content]
     ContactMailer.send_mail(@mail_title, @mail_content,group_users).deliver
   end
-  
+
 
   private
 
