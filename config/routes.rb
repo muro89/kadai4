@@ -25,6 +25,8 @@ devise_for :users
 
   resources :groups do
     get "join" => "groups#join"
+    get "new/mail" => "groups#new_mail"
+    get "send/mail" => "groups#send_mail"
     end
 
   resources :chats, only: [:show, :create]
